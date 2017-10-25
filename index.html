@@ -1,0 +1,43 @@
+<!DOCTYPE>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div id="buttons-shows">
+            <form id="show-form">
+                <label for="show-input">Add a TV show!</label>
+                <input type="text" id="show-input">
+                <br>
+                <input id="add-show" type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        //Initial array
+        var shows = ["Rick and Morty", "Parks and Recreation", "Doctor Who", "Community", "30 Rock", "The Office", "Spaced"]
+        //API key
+        var giphyKey = "kXYENqTT14lojw7Hv5SK1sXRuSXP9T9y"
+        //Gotta add the buttons for the TV shows. Also, we must empty the list so we aren't repeating everything.
+        function renderButtons() {
+            $("#buttons-view").empty();
+            for (var i = 0; i < shows.length; i += 1) {
+                var a = $("<button>"); 
+                a.addClass("show");
+                a.attr("data-name", shows[i]);
+                a.text(shows[i]);
+                $("buttons-view").append(a);
+            };
+        };
+        renderButtons();
+    </script>
+</body>
+
+</html>
