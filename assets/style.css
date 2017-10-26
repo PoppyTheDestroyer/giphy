@@ -1,0 +1,8 @@
+form, button, div, input {
+    margin: 10px;
+}
+
+form {
+    float: right;
+}
+
