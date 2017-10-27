@@ -25,52 +25,51 @@ $(document).ready(function () {
 
                 var showImage = $("<img>");
                 showImage.attr("src", results[i].images.fixed_height_still.url);
+                showImage.attr("data-animate", results[i].images.fixed_height.url)
+                showImage.attr("data-still", results[i].images.fixed_height_still.url)
+                showImage.attr("data-state", "still");
                 showDiv.append(showImage);
-                showDiv.append(p);                
+                showDiv.append(p);
                 $("#showsGoHere").prepend(showDiv);
             }
-            $("showImage").on("click", function () {
-                console.log("Blarg");
-                var state = $(this).attr("data-state");
-                if (state === "still") {
-                    $(this).attr("src", $(this).data("animate"));
-                    $(this).attr("data-state", "animate");
-                }
-                else {
-                    $(this).attr("src", $(this).data("still"));
-                    $(this).attr("data-state", "still");
-                }
-
-
-
-            })
-        
+        })
+    };
+    //Gotta add the buttons for the TV shows. Also, we must empty the list so we aren't repeating everything.
+    function renderButtons() {
+        console.log("The buttons work so far.");
+        $("#buttons-view").empty();
+        for (var i = 0; i < shows.length; i += 1) {
+            //console.log(shows[i]);
+            var a = $("<button>");
+            a.addClass("imageShow");
+            a.attr("data-name", shows[i]);
+            a.text(shows[i]);
+            $("#buttons-view").append(a);
+        };
+        $("#show-input[type='text']").val("");
+    };
+    $(document).on("click", "img", function () {
+        console.log("Blarg");
+        var state = $(this).attr("data-state");
+        if (state === "still") {
+            $(this).attr("src", $(this).attr("data-animate"));
+            $(this).attr("data-state", "animate");
+        }
+        else {
+            $(this).attr("src", $(this).attr("data-still"));
+            $(this).attr("data-state", "still");
+        }
+console.log("farts");
     })
-
-    };
-//Gotta add the buttons for the TV shows. Also, we must empty the list so we aren't repeating everything.
-function renderButtons() {
-    console.log("The buttons work so far.");
-    $("#buttons-view").empty();
-    for (var i = 0; i < shows.length; i += 1) {
-        //console.log(shows[i]);
-        var a = $("<button>");
-        a.addClass("imageShow");
-        a.attr("data-name", shows[i]);
-        a.text(shows[i]);
-        $("#buttons-view").append(a);
-    };
-    $("#show-input[type='text']").val("");
-};
-//Need to add a show button from user submission
-$("#add-show").on("click", function (event) {
-    event.preventDefault();
-    var show = $("#show-input").val().trim();
-    shows.push(show);
+    //Need to add a show button from user submission
+    $("#add-show").on("click", function (event) {
+        event.preventDefault();
+        var show = $("#show-input").val().trim();
+        shows.push(show);
+        renderButtons();
+    })
+    //Event listener for the button click
+    $(document).on("click", ".imageShow", displayShow);
+    //Call button function
     renderButtons();
-})
-//Event listener for the button click
-$(document).on("click", ".imageShow", displayShow);
-//Call button function
-renderButtons();
 })
