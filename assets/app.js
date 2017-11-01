@@ -8,7 +8,7 @@ $(document).ready(function () {
         //var giphyKey = "kXYENqTT14lojw7Hv5SK1sXRuSXP9T9y";
         var show = $(this).attr("data-name");
         //Search query
-        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + show + "&api_key=kXYENqTT14lojw7Hv5SK1sXRuSXP9T9y&limit=10";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + show + "&api_key=kXYENqTT14lojw7Hv5SK1sXRuSXP9T9y&limit=10";
         //Ajax call
         $.ajax({
             url: queryURL,
